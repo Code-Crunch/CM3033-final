@@ -99,6 +99,7 @@ public class Client implements Runnable {
                             if (!sendStr.equals(oldSendStr)) {
                                 // Send the message
                                 sendMessage(sendStr);
+                                sendMessage("BPM:200"); //for the testing purposes
                                 // Set the sent message record
                                 oldSendStr = sendStr;
                                 // Take 1 from message count as one has been sent

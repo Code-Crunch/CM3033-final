@@ -22,17 +22,19 @@ public class Server implements Runnable {
     private ServerApp serverApp;
 
     // Create the server using the passed incoming code
-    public Server(Socket incoming, int no, ServerApp sa) {
+    public Server(Socket incoming, int no, ServerApp serverApp) {
         // Set this's incoming to the passed on
         this.incoming = incoming;
         this.number = no;
-        this.serverApp = sa; //@ MS
-        sa.setVisible(true); //@ MS
+        this.serverApp = serverApp; //@ MS
+       
     }
-
+    
     @Override
     public void run() {
+        
         try {
+             //serverApp.setVisible(true); //@ MS
             // Configure the listener/sender
             BufferedReader in = new BufferedReader(new InputStreamReader(incoming.getInputStream()));
             PrintWriter out = new PrintWriter(incoming.getOutputStream(), true /* auto flush */);
@@ -46,7 +48,12 @@ public class Server implements Runnable {
             System.out.println(incoming.getLocalAddress().getHostName() + " Connected " + number);
             // A boolean to store a while variable
             boolean finished = false;
+            int bpm = 0;
             while (!finished) {
+                bpm++;
+                serverApp.updateBPM(number, bpm);
+                serverApp.updateConnected(number);
+                
                 // if the listener is ready
                 if (in.ready()) {
                     // create a String to store the sent data
@@ -58,6 +65,7 @@ public class Server implements Runnable {
                         // Print the recieve value
                         System.out.println("Receieved: " + str);
                         // If the string is bye
+                        //processInput(str);
                         if (str.trim().equals("BYE")) {
                             // Print that machine is disconnecting
                             System.out.println(incoming.getLocalAddress().getHostName() + " Disconnected");
@@ -68,6 +76,7 @@ public class Server implements Runnable {
                 }
             }
             // Disconnect the client
+            serverApp.disconnect(number);
             incoming.close();
         } catch (IOException e) {
             System.out.println(e);
