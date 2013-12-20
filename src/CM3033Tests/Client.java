@@ -29,15 +29,13 @@ public class Client implements Runnable {
     // Stores the stream to read from
     BufferedReader in;
     // Stores the default value for the sending String
-    String sendStr = "MaxMin:null";
+    String sendStr = "MaxMin:null", oldSendStr = "", bpm = "null", oldBPM = "";
     // Stores the string to check if the value should be sent
-    String oldSendStr = "";
     // Stores the variable to store if messages have been recieved by the server
-    int messageCount = 0;
+    int messageCount = 1;
     // Stores the frame for producing messages
     Component frame = null;
     // A blank variable to confirm the maxmin value was recieved
-    String maxMin = "";
     // A variable to store the sahred data
     volatile DataShare shared;
 
@@ -58,14 +56,15 @@ public class Client implements Runnable {
                 // If a connection is required
                 if (shared.isConnect()) {
                     // If not already connected
+
                     if (!shared.isConnected()) {
                         // Set IP to the IP passed form dialog.
-                        String ip = JOptionPane.showInputDialog("input ip address");
+                        String ip = JOptionPane.showInputDialog("Input ip address");
                         // If the user input is not null.
                         if (ip != null) {
                             // Set the new Socket
                             requestSocket = new Socket(ip, 8189);
-                            
+
                             if (requestSocket.isConnected() && !requestSocket.isClosed()) {
                                 // Print connection details
                                 System.out.println("Client>Connected to "
@@ -81,52 +80,58 @@ public class Client implements Runnable {
                                 messageCount++;
                             }
                             // If the in stream is ready
-                            if (in.ready()) {
-                                // If shared MaxMin is not null
-                                if (shared.getMaxMin() != null) {
-                                    // Print the returned message from the server
-                                    System.out.println("Server>" + in.readLine());
-                                    // Add to the message count
-                                    messageCount++;
-                                } else {
-                                    // Set the shared max min for some reason???
-                                    shared.setMaxMin(maxMin);
-                                }
-                            }
-                            // Set the max min to th shared maxmin
-                            sendStr = "MaxMin:" + shared.getMaxMin();
-                            // If the send has been updated 
-                            if (!sendStr.equals(oldSendStr)) {
-                                // Send the message
-                                sendMessage(sendStr);
-                                sendMessage("BPM:200"); //for the testing purposes
-                                // Set the sent message record
-                                oldSendStr = sendStr;
-                                // Take 1 from message count as one has been sent
-                                messageCount--;
 
-                                // If the message count is greater than < 0
-                                if (messageCount < 0) {
-                                    // send a confirmation message to disconnect
-                                    sendMessage("BYE");
-                                    // Set shared connected to false
-                                    shared.setConnected(false);
-                                    // If the shared is running
-                                    if (shared.isRunning()) {
-                                        // Print the server timeout
-                                        System.out.println("Server Timeout!");
-                                    } else {
-                                        // stop the system
-                                        System.exit(0);
-                                    }
-                                }
+                            // Set the max min to th shared maxmin
+                            //sendStr = "MaxMin:" + shared.getMaxMin();
+                            // If the send has been updated 
+                            if (!sendStr.equals("MaxMin:" + shared.getMaxMin())) {
+                                // Send the message
+                                sendMessage("MaxMin:" + shared.getMaxMin());
+                                // Set the sent message record
+                                sendStr = shared.getMaxMin() + "";
                             }
+
                         } else {
                             // set shared connect and connected to false
                             shared.setConnect(false);
                             shared.setConnected(false);
                             // Show Dialog
                             JOptionPane.showMessageDialog(frame, "Please enter a valid IP.");
+                        }
+                    }
+                    if (!bpm.equals("BPM:" + shared.getBPM())) {
+                        // Send the message
+                        sendMessage("BPM:" + shared.getBPM());
+                        // Set the sent message record
+                        bpm = "BPM:" + shared.getBPM();
+                    }
+                    
+                    if (in.ready()) {
+                        // If shared MaxMin is not null
+                        if (shared.getMaxMin() != null) {
+                            // Print the returned message from the server
+                            System.out.println("Server>" + in.readLine());
+                            // Add to the message count
+                            messageCount++;
+                        } else {
+                            // Set the shared max min for some reason???
+                            shared.setMaxMin("");
+                        }
+                    }
+
+                    if (messageCount < 0) {
+                        // send a confirmation message to disconnect
+                        sendMessage("BYE");
+                        // Set shared connected to false
+                        shared.setConnected(false);
+                        // If the shared is running
+                        if (shared.isRunning()) {
+                            // Print the server timeout
+                            System.out.println("Server Timeout!");
+                            sendStr = "MaxMin:null";
+                        } else {
+                            // stop the system
+                            System.exit(0);
                         }
                     }
                     // If shared is connected
@@ -136,6 +141,7 @@ public class Client implements Runnable {
                     // Send bye to disconnect from server
                     sendMessage("BYE");
                     // Set connected to false
+                    sendStr = "MaxMin:null";
                     shared.setConnected(false);
                 }
             } catch (IOException ex) {
@@ -155,6 +161,7 @@ public class Client implements Runnable {
         // Send the message
         out.println(msg);
         // Print the message
-        System.out.println("Client>" + msg);
+        System.out.println("Clientmsg>" + msg);
+        messageCount--;
     }
 }
