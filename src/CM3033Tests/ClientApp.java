@@ -352,23 +352,9 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_maxValueActionPerformed
 
     private void sendBPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBPMActionPerformed
-        try {
-            a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
-            a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
-            dataShare.setHbLimits(Integer.parseInt(minValue.getSelectedItem().toString()), Integer.parseInt(maxValue.getSelectedItem().toString()));
-            heartbeatValue = dataShare.getHb();
-            if (heartbeatValue > 0) {
-                updateBpm(String.valueOf(heartbeatValue));
-                alterText(dataShare.genTime());
-                a.check(heartbeatValue);
-                if (a.info() != null) {
-                    alterText(a.info());
-                    a.setInfo(null);
-                }
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
+        a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
+        dataShare.setHbLimits(Integer.parseInt(minValue.getSelectedItem().toString()), Integer.parseInt(maxValue.getSelectedItem().toString()));
     }//GEN-LAST:event_sendBPMActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -391,7 +377,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton1ActionPerformed
 
 // A method to update the time
-    public void updateTime() {
+    public void updateTime() throws InterruptedException {
         // set the now calander
         now = Calendar.getInstance();
         // get the time from the now calander
@@ -400,6 +386,16 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText(dateFormat.format(time));
         // Set the elapsed variable to the current time minus the start time.
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
+        heartbeatValue = dataShare.getHb();
+        if (heartbeatValue > 0) {
+            updateBpm(String.valueOf(heartbeatValue));
+            alterText(dataShare.genTime());
+            a.check(heartbeatValue);
+            if (a.info() != null) {
+                alterText(a.info());
+                a.setInfo(null);
+            }
+        }
     }
 
     // The method to test dropdowns
@@ -484,27 +480,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         return heartbeatValue;
     }
 
-    public void updateLog() {
-        if (dataShare.isConnected()) {
-            try {
-                Thread.sleep(delay);
-                int placeHolder = dataShare.getHb();
-                alterText(dataShare.genTime());
-                updateBpm(String.valueOf(placeHolder));
-                a.check(placeHolder);
-                if (a.info() != null) {
-                    alterText(a.info());
-                    a.setInfo(null);
-
-                }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ClientApp.class
-                        .getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bpmLabel;
     private javax.swing.JLabel bpmValue;
@@ -538,8 +513,12 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         setVisible(true);
         // Update the time in near real time
         while (dataShare.isRunning()) {
-            updateTime();
-            //  updateLog();
+            try {
+                updateTime();
+                //  updateLog();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
