@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  * @author Mazzy
  */
 public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
-    
-    private int BPM, tolerance, delay;
+
+    private int BPM, tolerance, delay, max;
     private final Random r;
     DataShare ds;
     long tStart = System.currentTimeMillis();
@@ -157,17 +157,17 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
                 JOptionPane.showMessageDialog(rootPane, "Please input a valid value between 1 and 60");
             }
         }
-
+        max = BPM + tolerance;
     }//GEN-LAST:event_jButton1ActionPerformed
     public int getBpm() {
         return BPM;
-        
+
     }
-    
+
     public int getTolerance() {
         return tolerance;
     }
-    
+
     public int getDelay() {
         return delay;
     }
@@ -189,15 +189,20 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-    
+
     public void getRandom() {
         //generate a temp value for the random;
         int temp = 0;
         if (!isVisible()) {
             setVisible(true);
-            BPM = getBpm() + r.nextInt(tolerance);
-            
         }
+        temp = getBpm() + r.nextInt(tolerance);
+        if (temp > max) {
+            BPM = getBpm() - r.nextInt(tolerance);
+        } else {
+            BPM = temp;
+        }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bpmText;

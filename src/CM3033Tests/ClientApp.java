@@ -431,19 +431,9 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     }
 
     public void updateBpm() throws InterruptedException {
-        if (dataShare.getBPM() > 0) {
-            while (true) {
-                long tEnd = System.currentTimeMillis();
-                long tDelta = tEnd - tStart;
-                double elapsedSeconds = tDelta / 1000.0;
-                if (elapsedSeconds > dataShare.getDelay()) {
-                    tStart = System.currentTimeMillis();
-                    alterText(dataShare.genTime() + "");
-                    bpmValue.setText("" + dataShare.getBPM());
-                }
-            }
+        if (!bpmValue.getText().equals(dataShare.getBPM() + "")) {
+            bpmValue.setText("" + dataShare.getBPM());
         }
-
     }
 
     public int getHb() {
