@@ -32,7 +32,7 @@ public class Client implements Runnable {
     String sendStr = "MaxMin:null", oldSendStr = "", bpm = "null", oldBPM = "";
     // Stores the string to check if the value should be sent
     // Stores the variable to store if messages have been recieved by the server
-    int messageCount = 1;
+    int messageCount = 2;
     // Stores the frame for producing messages
     Component frame = null;
     // A blank variable to confirm the maxmin value was recieved
@@ -77,7 +77,6 @@ public class Client implements Runnable {
                                 // set the shared connected to true. 
                                 shared.setConnected(true);
                                 // Add to the message count (Becuase confirmation of connection from the server)
-                                messageCount++;
                             }
                             // If the in stream is ready
 
@@ -106,19 +105,8 @@ public class Client implements Runnable {
                         bpm = "BPM:" + shared.getBPM();
                     }
                     
-                    if (in.ready()) {
-                        // If shared MaxMin is not null
-                        if (shared.getMaxMin() != null) {
-                            // Print the returned message from the server
-                            System.out.println("Server>" + in.readLine());
-                            // Add to the message count
-                            messageCount++;
-                        } else {
-                            // Set the shared max min for some reason???
-                            shared.setMaxMin("");
-                        }
-                    }
-
+                    recieveMessage();
+                    
                     if (messageCount < 0) {
                         // send a confirmation message to disconnect
                         sendMessage("BYE");
@@ -157,11 +145,29 @@ public class Client implements Runnable {
         }
     }
 
+    private void recieveMessage() throws IOException {
+        if (in.ready()) {
+            // If shared MaxMin is not null
+            if (shared.getMaxMin() != null) {
+                // Print the returned message from the server
+                System.out.println("Server>" + in.readLine());
+                // Add to the message count
+                messageCount++;
+                System.out.println("Read: "+messageCount);
+            } else {
+                // Set the shared max min for some reason???
+                shared.setMaxMin("");
+            }
+        }
+
+    }
+
     private void sendMessage(String msg) {
         // Send the message
         out.println(msg);
         // Print the message
         System.out.println("Clientmsg>" + msg);
         messageCount--;
+        System.out.println("Sends: "+messageCount);
     }
 }
