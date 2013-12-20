@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -414,13 +413,11 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     public void startAlarms() throws InterruptedException {
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
-        if (!a.active() && dataShare.getBPM() > 0) {
-            a.check(dataShare.getBPM());
-            if (a.active()) {
-                alterText(dataShare.genTime());
-                alterText(a.info());
-                a.deactivate();
-            }
+        int temp = dataShare.getBPM();
+        if (!a.active() && temp > 0) {
+            a.check(temp);
+            alterText(dataShare.genTime(temp));
+            alterText(a.info());
         }
     }
 

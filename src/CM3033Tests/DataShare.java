@@ -108,10 +108,10 @@ public class DataShare {
         this.delay = delay;
     }
 
-    public String genTime() throws InterruptedException {
+    public String genTime(int temp) throws InterruptedException {
         start = Calendar.getInstance();
         Date time = start.getTime();
-        String str = "BPM generated : " + BPM + ", generated at :" + dateFormat.format(time.getTime());
+        String str = "BPM generated : " + temp + ", generated at :" + dateFormat.format(time.getTime());
         return str;
     }
 }
