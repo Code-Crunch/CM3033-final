@@ -21,7 +21,9 @@ public class HeartBeat {
     private Random r;
     //set a max value that the BPM can be 
     private int max, min;
-    HeartBeatInput hbi;
+    //create a input for the heartbeat
+    private HeartBeatInput hbi;
+    private Alarm a;
     private int BPM;
     //boolean that decides if the bpm should be user inputted or automatic
     private boolean automatic = false;
@@ -30,11 +32,12 @@ public class HeartBeat {
     private Calendar start = null;
 
     //constructor
-    public HeartBeat(int min, int max) {
+    public HeartBeat(int min, int max, Alarm a) {
         r = new Random();
         this.max = max;
         this.min = min;
         hbi = new HeartBeatInput();
+        this.a = a;
     }
 
     //set automatic true
@@ -48,7 +51,7 @@ public class HeartBeat {
     }
 
     public int getCurrentBPM() {
-        BPM = getRandom();
+        getRandom();
         return BPM;
     }
 
@@ -72,20 +75,20 @@ public class HeartBeat {
     }
 
     //generate a random integer between 0 and the max value
-    public int getRandom() {
+    public void getRandom() {
         //generate a temp value for the random;
-        int temp = 0;
-        if (automatic) {
-            temp = r.nextInt(max - min) + min;
-            BPM = temp;
-        } else {
-            if (!hbi.isVisible()) {
-                hbi.setVisible(true);
+        if (!a.active()) {
+            int temp = 0;
+            if (automatic) {
+                temp = r.nextInt(max - min) + min;
+                BPM = temp;
+            } else {
+                if (!hbi.isVisible()) {
+                    hbi.setVisible(true);
+                }
+                temp = hbi.getBpm();
+                BPM = temp;
             }
-            temp = hbi.getBpm();
-            BPM = temp;
         }
-        return temp;
-        
     }
 }

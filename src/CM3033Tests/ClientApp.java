@@ -77,6 +77,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         dataShare.setMin(Integer.parseInt(minValue.getSelectedItem().toString()));
         dataShare.startHb();
         delay = 10000;
+        dataShare.setAlarm(a);
     }
 
     /**

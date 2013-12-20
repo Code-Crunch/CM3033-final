@@ -27,6 +27,7 @@ public class DataShare {
     // BPM
     private HeartBeat hb;
     private int BPM;
+    private Alarm a;
 
     ////////////////////////////
     //////  CONSTRUCTOR  ///////
@@ -34,6 +35,7 @@ public class DataShare {
     public DataShare() {
         min = 0;
         max = 0;
+
     }
 
     public void setMin(int min) {
@@ -45,7 +47,7 @@ public class DataShare {
     }
 
     public void startHb() {
-        hb = new HeartBeat(min, max);
+        hb = new HeartBeat(min, max, a);
     }
 
     //////////////////////////////
@@ -96,5 +98,9 @@ public class DataShare {
 
     public String genTime() throws InterruptedException {
         return hb.genTime(BPM);
+    }
+
+    void setAlarm(Alarm a) {
+        this.a = a;
     }
 }
