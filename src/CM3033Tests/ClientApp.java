@@ -107,7 +107,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         elapsedTimeValue = new javax.swing.JLabel();
         sendBPM = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuExit = new javax.swing.JMenu();
         resetMenu = new javax.swing.JMenuItem();
@@ -172,13 +171,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         });
 
         jLabel1.setText("Send new Heart Beat value");
-
-        jButton1.setText("Change delay");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         menuExit.setText("File");
 
@@ -247,12 +239,10 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bpmValue)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(maxLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(maxValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(maxLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(maxValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(35, 35, 35)
@@ -298,8 +288,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sendBPM)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -359,25 +348,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         dataShare.setHbLimits(Integer.parseInt(minValue.getSelectedItem().toString()), Integer.parseInt(maxValue.getSelectedItem().toString()));
     }//GEN-LAST:event_sendBPMActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String check1 = "[0-9]";
-        String check2 = "[0-9]{0,9}";
-        String str = JOptionPane.showInputDialog("chose a delay between 1-60 seconds");
-        if (str != null) {
-            if (str.matches(check1) || str.matches(check2)) {
-                int temp = Integer.parseInt(str);
-                if (temp > 0 && temp <= 60) {
-                    delay = temp * 1000;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please only use values lower than 200");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Please only use numerical values");
-
-            }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 // A method to update the time
     public void updateTime() throws InterruptedException {
         // set the now calander
@@ -390,25 +360,25 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
         if (!a.active()) {
             heartbeatValue = dataShare.getHb();
-            long tEnd = System.currentTimeMillis();
-            long tDelta = tEnd - tStart;
-            double elapsedSeconds = tDelta / 1000.0;
-            if (elapsedSeconds > dataShare.getDelay()) {
-                System.out.println(delay + " Seconds");
-                tStart = System.currentTimeMillis();
-                Random r = new Random();
-                int i = r.nextInt(dataShare.getTolerance());
-                heartbeatValue += i;
-            }
-            if (heartbeatValue > 0) {
-                updateBpm(String.valueOf(heartbeatValue));
-                alterText(dataShare.genTime());
-                a.check(heartbeatValue);
-                if (a.info() != null) {
-                    alterText(a.info());
-                    a.setInfo(null);
-                }
-            }
+//            long tEnd = System.currentTimeMillis();
+//            long tDelta = tEnd - tStart;
+//            double elapsedSeconds = tDelta / 1000.0;
+//            if (elapsedSeconds > dataShare.getDelay()) {
+//                System.out.println(dataShare.getDelay() + " Seconds");
+//                tStart = System.currentTimeMillis();
+//                Random r = new Random();
+//                int i = r.nextInt(dataShare.getTolerance());
+//                heartbeatValue += i;
+//            }
+//            if (heartbeatValue > 0) {
+//                updateBpm(String.valueOf(heartbeatValue));
+//                alterText(dataShare.genTime());
+//                a.check(heartbeatValue);
+//                if (a.info() != null) {
+//                    alterText(a.info());
+//                    a.setInfo(null);
+//                }
+//            }
         }
     }
 
@@ -504,7 +474,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel elapsedTime;
     private javax.swing.JLabel elapsedTimeValue;
     private javax.swing.JMenuItem exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
