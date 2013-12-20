@@ -291,18 +291,14 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
 
     private void connectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionButtonActionPerformed
         // If the system is not connected
-        if (!dataShare.isConnect()) {
+        if (dataShare.isConnect()) {
             // set the data share to atempt to connect
             dataShare.setConnect(!dataShare.isConnect());
-            // Set the connection
-            setConnection(!dataShare.isConnect());
             // Show the values that have been set in the text area.
             alterText("Min set to: " + lowValue + "\tMax set to: " + highValue);
         } else {
             // set shared data to disconncet
             dataShare.setConnect(!dataShare.isConnect());
-            // Set the connection to that value
-            setConnection(!dataShare.isConnect());
         }
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
@@ -376,8 +372,8 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     }
 
     // A method to the configure if the client is connected or not. 
-    public void setConnection(boolean connected) {
-        if (!connected) {
+    public void setConnection() {
+        if (dataShare.isConnected()) {
             //connect = true;
             // If connected, disable the dropdowns
             maxValue.setEnabled(false);
@@ -425,10 +421,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public int getHb() {
-        return heartbeatValue;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bpmLabel;
     private javax.swing.JLabel bpmValue;
@@ -463,6 +455,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
                 updateTime();
                 updateBpm();
                 startAlarms();
+                setConnection();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
             }
