@@ -413,11 +413,15 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     public void startAlarms() throws InterruptedException {
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
+        dataShare.setAlarm(a);
         int temp = dataShare.getBPM();
-        if (!a.active() && temp > 0) {
+        if (temp > 0) {
             a.check(temp);
-            alterText(dataShare.genTime(temp));
-            alterText(a.info());
+            if (a.active()) {
+                alterText(dataShare.genTime(temp));
+                alterText(a.info());
+                a.deactivate();
+            }
         }
     }
 
