@@ -19,10 +19,11 @@ import javax.swing.JOptionPane;
 public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
 
     private int BPM, tolerance, delay;
-    private Random r;
+    private final Random r;
     DataShare ds;
+    long tStart = System.currentTimeMillis();
     private Calendar start = null;
-    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     /**
      * Creates new form HeartBeatInput
@@ -31,9 +32,7 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
      */
     public HeartBeatInput(DataShare ds) {
         initComponents();
-        BPM = 1;
-        delay = 1;
-        tolerance = 1;
+        delay = 60;
         r = new Random();
         this.ds = ds;
     }
@@ -158,6 +157,7 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
                 JOptionPane.showMessageDialog(rootPane, "Please input a valid value between 1 and 60");
             }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
     public int getBpm() {
         return BPM;
@@ -176,7 +176,18 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton2ActionPerformed
     @Override
     public void run() {
-
+        setVisible(true);
+        while (true) {
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+            if (elapsedSeconds > delay) {
+                System.out.println(delay);
+                tStart = System.currentTimeMillis();
+                getRandom();
+                ds.setBPM(BPM);
+            }
+        }
     }
 
     public void getRandom() {
@@ -185,6 +196,7 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
         if (!isVisible()) {
             setVisible(true);
             BPM = getBpm() + r.nextInt(tolerance);
+
         }
     }
 

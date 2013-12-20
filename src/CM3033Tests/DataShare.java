@@ -80,8 +80,16 @@ public class DataShare {
         DataShare.maxMin = maxMin;
     }
 
-    void setAlarm(Alarm a) {
+    public void setAlarm(Alarm a) {
         this.a = a;
+    }
+
+    public void setBPM(int BPM) {
+        this.BPM = BPM;
+    }
+
+    public int getBPM() {
+        return BPM;
     }
 
 }
