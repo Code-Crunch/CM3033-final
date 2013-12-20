@@ -64,7 +64,6 @@ public class Alarm {
 
 //check if the value is between the treshold
     public void check(int bpm) {
-
         //check if it's to high
         if (bpm > high) {
             activate();
@@ -74,20 +73,18 @@ public class Alarm {
             ishigh = false;
             activate();
         } else {
-
             deactivate();
         }
-
         //pop up's with the alarm
         if (active()
                 && ishigh) {
             JOptionPane.showMessageDialog(null, "ALERT: HEART BEAT TOO HIGH");
-            deactivate();
+            // deactivate();
             alarm = "ALERT: TOO HIGH, started at : " + st + ",stopped at :" + s;
         } else if (active()
                 && !ishigh) {
             JOptionPane.showMessageDialog(null, "ALERT: HEART BEAT TOO LOW");
-            deactivate();
+            // deactivate();
             alarm = "ALERT: TOO LOW, started at : " + st + ",stopped at :" + s;
         }
     }
