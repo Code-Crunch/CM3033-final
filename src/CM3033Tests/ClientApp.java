@@ -328,8 +328,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         }
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
-        dataShare.setHbLimits(Integer.parseInt(minValue.getSelectedItem().toString()), Integer.parseInt(maxValue.getSelectedItem().toString()));
-
     }//GEN-LAST:event_connectionButtonActionPerformed
 
     private void minValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minValueActionPerformed
@@ -345,7 +343,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     private void sendBPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBPMActionPerformed
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
-        dataShare.setHbLimits(Integer.parseInt(minValue.getSelectedItem().toString()), Integer.parseInt(maxValue.getSelectedItem().toString()));
     }//GEN-LAST:event_sendBPMActionPerformed
 
 // A method to update the time
@@ -360,25 +357,26 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
         if (!a.active()) {
             heartbeatValue = dataShare.getHb();
-//            long tEnd = System.currentTimeMillis();
-//            long tDelta = tEnd - tStart;
-//            double elapsedSeconds = tDelta / 1000.0;
-//            if (elapsedSeconds > dataShare.getDelay()) {
-//                System.out.println(dataShare.getDelay() + " Seconds");
-//                tStart = System.currentTimeMillis();
-//                Random r = new Random();
-//                int i = r.nextInt(dataShare.getTolerance());
-//                heartbeatValue += i;
-//            }
-//            if (heartbeatValue > 0) {
-//                updateBpm(String.valueOf(heartbeatValue));
-//                alterText(dataShare.genTime());
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+            if (elapsedSeconds > dataShare.getHeartBeat().getHBI().getDelay()) {
+                System.out.println(dataShare.getHeartBeat().getHBI().getDelay() + " Seconds");
+                System.out.println(elapsedSeconds);
+                tStart = System.currentTimeMillis();
+                Random r = new Random();
+                int i = r.nextInt(dataShare.getHeartBeat().getHBI().getTolerance());
+                heartbeatValue += i;
+                System.out.println(heartbeatValue);
+                if (heartbeatValue > 0) {
+                    updateBpm(String.valueOf(heartbeatValue));
+                    alterText(dataShare.genTime());
 //                a.check(heartbeatValue);
 //                if (a.info() != null) {
 //                    alterText(a.info());
 //                    a.setInfo(null);
-//                }
-//            }
+                }
+            }
         }
     }
 

@@ -47,7 +47,7 @@ public class DataShare {
     }
 
     public void startHb() {
-        hb = new HeartBeat(min, max, a);
+        hb = new HeartBeat(a);
     }
 
     //////////////////////////////
@@ -85,12 +85,6 @@ public class DataShare {
         DataShare.maxMin = maxMin;
     }
 
-    public void setHbLimits(int min, int max) {
-        this.min = min;
-        this.max = max;
-        hb.setMaxMin(this.min, this.max);
-    }
-
     public int getHb() {
         BPM = hb.getCurrentBPM();
         return BPM;
@@ -104,11 +98,7 @@ public class DataShare {
         this.a = a;
     }
 
-    int getTolerance() {
-    return hb.getTolerance();
-    }
-
-    int getDelay() {
-     return hb.getDelay();
+    public HeartBeat getHeartBeat() {
+        return hb;
     }
 }
