@@ -354,17 +354,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText(dateFormat.format(time));
         // Set the elapsed variable to the current time minus the start time.
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
-        if (dataShare.getBPM() > 0) {
-            while (true) {
-                long tEnd = System.currentTimeMillis();
-                long tDelta = tEnd - tStart;
-                double elapsedSeconds = tDelta / 1000.0;
-                if (elapsedSeconds > dataShare.getDelay()) {
-                    tStart = System.currentTimeMillis();
-                    alterText(dataShare.getBPM() + "");
-                }
-            }
-        }
     }
 
     // The method to test dropdowns
@@ -441,8 +430,20 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         textSpace.append(dateFormat.format(now.getTime()) + " | " + text + "\n");
     }
 
-    public void updateBpm(String bpm) {
-        bpmValue.setText(bpm);
+    public void updateBpm() throws InterruptedException {
+        if (dataShare.getBPM() > 0) {
+            while (true) {
+                long tEnd = System.currentTimeMillis();
+                long tDelta = tEnd - tStart;
+                double elapsedSeconds = tDelta / 1000.0;
+                if (elapsedSeconds > dataShare.getDelay()) {
+                    tStart = System.currentTimeMillis();
+                    alterText(dataShare.genTime() + "");
+                    bpmValue.setText("" + dataShare.getBPM());
+                }
+            }
+        }
+
     }
 
     public int getHb() {
@@ -483,6 +484,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         while (dataShare.isRunning()) {
             try {
                 updateTime();
+                updateBpm();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
             }

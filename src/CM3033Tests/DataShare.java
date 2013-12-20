@@ -5,6 +5,11 @@
  */
 package CM3033Tests;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Sam Cusson 1006286
@@ -27,6 +32,8 @@ public class DataShare {
     // BPM
     private int BPM;
     private Alarm a;
+    private Calendar start;
+    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     ////////////////////////////
     //////  CONSTRUCTOR  ///////
@@ -100,5 +107,11 @@ public class DataShare {
     public void setDelay(int delay) {
         this.delay = delay;
     }
-    
+
+    public String genTime() throws InterruptedException {
+        start = Calendar.getInstance();
+        Date time = start.getTime();
+        String str = "BPM generated : " + BPM + ", generated at :" + dateFormat.format(time.getTime());
+        return str;
+    }
 }

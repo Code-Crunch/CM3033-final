@@ -199,13 +199,6 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
             
         }
     }
-    
-    public String genTime(int rand) throws InterruptedException {
-        start = Calendar.getInstance();
-        Date time = start.getTime();
-        String str = "BPM generated : " + rand + ", generated at :" + dateFormat.format(time.getTime());
-        return str;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bpmText;
     private javax.swing.JTextField delayText;
