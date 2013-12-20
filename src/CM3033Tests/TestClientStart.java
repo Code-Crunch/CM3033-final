@@ -15,15 +15,17 @@ public class TestClientStart {
 
     // Create a datashare to pass data
     static volatile DataShare t1 = new DataShare();
+    HeartBeatInput hb;
 
     public static void main(String args[]) throws IOException {
         // create the client Thread
         Thread client = new Thread(new Client(t1));
         // create a thread to store the GUI
         Thread clientGUI = new Thread(new ClientApp(t1));
-
+        Thread heartbeat = new Thread(new HeartBeatInput(t1));
         // Start both threads
         clientGUI.start();
         client.start();
+        heartbeat.start();
     }
 }

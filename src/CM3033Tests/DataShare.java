@@ -5,6 +5,11 @@
  */
 package CM3033Tests;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Sam Cusson 1006286
@@ -14,6 +19,8 @@ public class DataShare {
     ////////////////////////////
     //////   VARIABLES   ///////
     ////////////////////////////
+    //integer for min and max 
+    int min, max, delay;
     // Store wether to connect or not
     public static volatile boolean connect = false;
     // Store if connected or not
@@ -23,11 +30,27 @@ public class DataShare {
     // Store the max/min limits
     public static volatile String maxMin = "";
     // BPM
+    private int BPM;
+    private Alarm a;
+    private Calendar start;
+    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     ////////////////////////////
     //////  CONSTRUCTOR  ///////
     ////////////////////////////
     public DataShare() {
+        min = 0;
+        max = 0;
+        delay = 1;
+        a = new Alarm(0, 0);
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
     }
 
     //////////////////////////////
@@ -65,4 +88,30 @@ public class DataShare {
         DataShare.maxMin = maxMin;
     }
 
+    public void setAlarm(Alarm a) {
+        this.a = a;
+    }
+
+    public void setBPM(int BPM) {
+        this.BPM = BPM;
+    }
+
+    public int getBPM() {
+        return BPM;
+    }
+
+    public int getDelay() {
+        return delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+
+    public String genTime() throws InterruptedException {
+        start = Calendar.getInstance();
+        Date time = start.getTime();
+        String str = "BPM generated : " + BPM + ", generated at :" + dateFormat.format(time.getTime());
+        return str;
+    }
 }
