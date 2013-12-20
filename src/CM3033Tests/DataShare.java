@@ -97,8 +97,4 @@ public class DataShare {
     public String genTime() throws InterruptedException {
         return hb.genTime(BPM);
     }
-
-    public void runHb() {
-        hb.start();
-    }
 }

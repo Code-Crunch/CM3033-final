@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author Florin Mazilu 1114040
  */
-public class HeartBeat extends Thread {
+public class HeartBeat {
 
     //create a random for the BPM
     private Random r;
@@ -86,11 +86,6 @@ public class HeartBeat extends Thread {
             BPM = temp;
         }
         return temp;
-    }
-
-    @Override
-
-    public void run() {
-        BPM = getRandom();
+        
     }
 }

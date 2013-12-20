@@ -12,9 +12,11 @@ import javax.swing.JOptionPane;
  *
  * @author Mazzy
  */
-public class HeartBeatInput extends javax.swing.JFrame {
+public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
 
     private int BPM, tolerance, delay;
+    long tStart = System.currentTimeMillis();
+    int seconds = 10;
 
     /**
      * Creates new form HeartBeatInput
@@ -22,7 +24,6 @@ public class HeartBeatInput extends javax.swing.JFrame {
     public HeartBeatInput() {
         initComponents();
         BPM = 0;
-
     }
 
     /**
@@ -145,14 +146,14 @@ public class HeartBeatInput extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Please input a valid value between 1 and 60");
             }
         }
-        Random r = new Random();
-        int i = r.nextInt(tolerance);
-        BPM += i;
-        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     public int getBpm() {
         return BPM;
 
+    }
+
+    public int getTokerance() {
+        return tolerance;
     }
 
     public int getDelay() {
@@ -161,7 +162,20 @@ public class HeartBeatInput extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+    @Override
+    public void run() {
+        long tEnd = System.currentTimeMillis();
+        long tDelta = tEnd - tStart;
+        double elapsedSeconds = tDelta / 1000.0;
+        if (elapsedSeconds > delay) {
+            System.out.println(delay + " Seconds");
+            tStart = System.currentTimeMillis();
+            Random r = new Random();
+            int i = r.nextInt(tolerance);
+            BPM += i;
+        }
 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bpmText;
     private javax.swing.JTextField delayText;
