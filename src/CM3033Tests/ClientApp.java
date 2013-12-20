@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     Alarm a;
     int heartbeatValue;
     int delay;
-
+    long tStart = System.currentTimeMillis();
     //public volatile boolean running;
     //public volatile boolean connect;
     //public volatile boolean connected;
@@ -387,14 +388,26 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText(dateFormat.format(time));
         // Set the elapsed variable to the current time minus the start time.
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
-        heartbeatValue = dataShare.getHb();
-        if (heartbeatValue > 0) {
-            updateBpm(String.valueOf(heartbeatValue));
-            alterText(dataShare.genTime());
-            a.check(heartbeatValue);
-            if (a.info() != null) {
-                alterText(a.info());
-                a.setInfo(null);
+        if (!a.active()) {
+            heartbeatValue = dataShare.getHb();
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+            if (elapsedSeconds > dataShare.getDelay()) {
+                System.out.println(delay + " Seconds");
+                tStart = System.currentTimeMillis();
+                Random r = new Random();
+                int i = r.nextInt(dataShare.getTolerance());
+                heartbeatValue += i;
+            }
+            if (heartbeatValue > 0) {
+                updateBpm(String.valueOf(heartbeatValue));
+                alterText(dataShare.genTime());
+                a.check(heartbeatValue);
+                if (a.info() != null) {
+                    alterText(a.info());
+                    a.setInfo(null);
+                }
             }
         }
     }

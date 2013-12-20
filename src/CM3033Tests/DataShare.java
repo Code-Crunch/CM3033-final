@@ -35,7 +35,7 @@ public class DataShare {
     public DataShare() {
         min = 0;
         max = 0;
-
+        a = new Alarm(0, 0);
     }
 
     public void setMin(int min) {
@@ -102,5 +102,13 @@ public class DataShare {
 
     void setAlarm(Alarm a) {
         this.a = a;
+    }
+
+    int getTolerance() {
+    return hb.getTolerance();
+    }
+
+    int getDelay() {
+     return hb.getDelay();
     }
 }

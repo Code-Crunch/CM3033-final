@@ -91,4 +91,12 @@ public class HeartBeat {
             }
         }
     }
+
+    int getTolerance() {
+        return hbi.getTolerance();
+    }
+
+    int getDelay() {
+        return hbi.getDelay();
+    }
 }

@@ -5,7 +5,6 @@
  */
 package CM3033Tests;
 
-import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,15 +14,15 @@ import javax.swing.JOptionPane;
 public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
 
     private int BPM, tolerance, delay;
-    long tStart = System.currentTimeMillis();
-    int seconds = 10;
 
     /**
      * Creates new form HeartBeatInput
      */
     public HeartBeatInput() {
         initComponents();
-        BPM = 0;
+        BPM = 1;
+        delay = 1;
+        tolerance = 1;
     }
 
     /**
@@ -152,7 +151,7 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
 
     }
 
-    public int getTokerance() {
+    public int getTolerance() {
         return tolerance;
     }
 
@@ -164,16 +163,6 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton2ActionPerformed
     @Override
     public void run() {
-        long tEnd = System.currentTimeMillis();
-        long tDelta = tEnd - tStart;
-        double elapsedSeconds = tDelta / 1000.0;
-        if (elapsedSeconds > delay) {
-            System.out.println(delay + " Seconds");
-            tStart = System.currentTimeMillis();
-            Random r = new Random();
-            int i = r.nextInt(tolerance);
-            BPM += i;
-        }
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
