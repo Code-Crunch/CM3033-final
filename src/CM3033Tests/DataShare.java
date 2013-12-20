@@ -15,7 +15,7 @@ public class DataShare {
     //////   VARIABLES   ///////
     ////////////////////////////
     //integer for min and max 
-    int min, max;
+    int min, max, delay;
     // Store wether to connect or not
     public static volatile boolean connect = false;
     // Store if connected or not
@@ -34,6 +34,7 @@ public class DataShare {
     public DataShare() {
         min = 0;
         max = 0;
+        delay = 1;
         a = new Alarm(0, 0);
     }
 
@@ -92,4 +93,12 @@ public class DataShare {
         return BPM;
     }
 
+    public int getDelay() {
+        return delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
+    }
+    
 }

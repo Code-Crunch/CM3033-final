@@ -44,7 +44,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     public ClientApp(DataShare ds2) throws IOException {
         // Initialise the components
         initComponents();
-        
+
         // set the data share to that passed to this class
         dataShare = ds2;
 
@@ -354,7 +354,17 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText(dateFormat.format(time));
         // Set the elapsed variable to the current time minus the start time.
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
-       // alterText(dataShare.getBPM() + "");
+        if (dataShare.getBPM() > 0) {
+            while (true) {
+                long tEnd = System.currentTimeMillis();
+                long tDelta = tEnd - tStart;
+                double elapsedSeconds = tDelta / 1000.0;
+                if (elapsedSeconds > dataShare.getDelay()) {
+                    tStart = System.currentTimeMillis();
+                    alterText(dataShare.getBPM() + "");
+                }
+            }
+        }
     }
 
     // The method to test dropdowns

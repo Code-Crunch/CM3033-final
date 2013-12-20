@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Mazzy
  */
 public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
-
+    
     private int BPM, tolerance, delay;
     private final Random r;
     DataShare ds;
@@ -161,13 +161,13 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jButton1ActionPerformed
     public int getBpm() {
         return BPM;
-
+        
     }
-
+    
     public int getTolerance() {
         return tolerance;
     }
-
+    
     public int getDelay() {
         return delay;
     }
@@ -182,24 +182,24 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
             long tDelta = tEnd - tStart;
             double elapsedSeconds = tDelta / 1000.0;
             if (elapsedSeconds > delay) {
-                System.out.println(delay);
                 tStart = System.currentTimeMillis();
                 getRandom();
                 ds.setBPM(BPM);
+                ds.setDelay(delay);
             }
         }
     }
-
+    
     public void getRandom() {
         //generate a temp value for the random;
         int temp = 0;
         if (!isVisible()) {
             setVisible(true);
             BPM = getBpm() + r.nextInt(tolerance);
-
+            
         }
     }
-
+    
     public String genTime(int rand) throws InterruptedException {
         start = Calendar.getInstance();
         Date time = start.getTime();
