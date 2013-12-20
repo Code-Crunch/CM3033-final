@@ -76,7 +76,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         a = new Alarm(Integer.parseInt(maxValue.getSelectedItem().toString()), Integer.parseInt(minValue.getSelectedItem().toString()));
         dataShare.setMax(Integer.parseInt(maxValue.getSelectedItem().toString()));
         dataShare.setMin(Integer.parseInt(minValue.getSelectedItem().toString()));
-        dataShare.startHb();
         delay = 10000;
         dataShare.setAlarm(a);
     }
@@ -473,7 +472,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         while (dataShare.isRunning()) {
             try {
                 updateTime();
-                //  updateLog();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
             }

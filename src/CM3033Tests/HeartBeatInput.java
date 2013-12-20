@@ -5,6 +5,11 @@
  */
 package CM3033Tests;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +19,23 @@ import javax.swing.JOptionPane;
 public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
 
     private int BPM, tolerance, delay;
+    private Random r;
+    DataShare ds;
+    private Calendar start = null;
+    private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     /**
      * Creates new form HeartBeatInput
+     *
+     * @param ds
      */
-    public HeartBeatInput() {
+    public HeartBeatInput(DataShare ds) {
         initComponents();
         BPM = 1;
         delay = 1;
         tolerance = 1;
+        r = new Random();
+        this.ds = ds;
     }
 
     /**
@@ -164,6 +177,22 @@ public class HeartBeatInput extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
 
+    }
+
+    public void getRandom() {
+        //generate a temp value for the random;
+        int temp = 0;
+        if (!isVisible()) {
+            setVisible(true);
+            BPM = getBpm() + r.nextInt(tolerance);
+        }
+    }
+
+    public String genTime(int rand) throws InterruptedException {
+        start = Calendar.getInstance();
+        Date time = start.getTime();
+        String str = "BPM generated : " + rand + ", generated at :" + dateFormat.format(time.getTime());
+        return str;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bpmText;

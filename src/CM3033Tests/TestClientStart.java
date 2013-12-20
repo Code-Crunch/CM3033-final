@@ -15,6 +15,7 @@ public class TestClientStart {
 
     // Create a datashare to pass data
     static volatile DataShare t1 = new DataShare();
+    static HeartBeatInput hb = new HeartBeatInput(t1);
 
     public static void main(String args[]) throws IOException {
         // create the client Thread

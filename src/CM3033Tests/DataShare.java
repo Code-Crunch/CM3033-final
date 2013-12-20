@@ -25,7 +25,6 @@ public class DataShare {
     // Store the max/min limits
     public static volatile String maxMin = "";
     // BPM
-    private HeartBeat hb;
     private int BPM;
     private Alarm a;
 
@@ -44,10 +43,6 @@ public class DataShare {
 
     public void setMax(int max) {
         this.max = max;
-    }
-
-    public void startHb() {
-        hb = new HeartBeat(a);
     }
 
     //////////////////////////////
@@ -85,20 +80,8 @@ public class DataShare {
         DataShare.maxMin = maxMin;
     }
 
-    public int getHb() {
-        BPM = hb.getCurrentBPM();
-        return BPM;
-    }
-
-    public String genTime() throws InterruptedException {
-        return hb.genTime(BPM);
-    }
-
     void setAlarm(Alarm a) {
         this.a = a;
     }
 
-    public HeartBeat getHeartBeat() {
-        return hb;
-    }
 }
