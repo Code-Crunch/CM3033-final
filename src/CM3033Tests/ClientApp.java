@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -104,8 +103,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         opModeValue = new javax.swing.JLabel();
         currentTimeValue = new javax.swing.JLabel();
         elapsedTimeValue = new javax.swing.JLabel();
-        sendBPM = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuExit = new javax.swing.JMenu();
         resetMenu = new javax.swing.JMenuItem();
@@ -161,15 +158,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText("00:00:00");
 
         elapsedTimeValue.setText("00:00:00");
-
-        sendBPM.setText("Send ");
-        sendBPM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendBPMActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Send new Heart Beat value");
 
         menuExit.setText("File");
 
@@ -241,12 +229,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
                                 .addComponent(maxLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(maxValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(35, 35, 35)
-                        .addComponent(sendBPM)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(15, 15, 15)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -284,11 +267,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bpmLabel)
                             .addComponent(bpmValue))))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sendBPM)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(57, 57, 57)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -338,11 +317,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         // Test the dropdown variables with the max
         testDropDowns("max");
     }//GEN-LAST:event_maxValueActionPerformed
-
-    private void sendBPMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBPMActionPerformed
-        a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
-        a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
-    }//GEN-LAST:event_sendBPMActionPerformed
 
 // A method to update the time
     public void updateTime() throws InterruptedException {
@@ -430,9 +404,24 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         textSpace.append(dateFormat.format(now.getTime()) + " | " + text + "\n");
     }
 
-    public void updateBpm() throws InterruptedException {
+    public void updateBpm() {
         if (!bpmValue.getText().equals(dataShare.getBPM() + "")) {
             bpmValue.setText("" + dataShare.getBPM());
+        }
+    }
+
+    public void startAlarms() throws InterruptedException {
+        a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
+        a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));
+        dataShare.setAlarm(a);
+        int temp = dataShare.getBPM();
+        if (temp > 0) {
+            a.check(temp);
+            if (a.active()) {
+                alterText(dataShare.genTime(temp));
+                alterText(a.info());
+                a.deactivate();
+            }
         }
     }
 
@@ -450,7 +439,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel elapsedTime;
     private javax.swing.JLabel elapsedTimeValue;
     private javax.swing.JMenuItem exit;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -462,7 +450,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel opModeLabel;
     private javax.swing.JLabel opModeValue;
     private javax.swing.JMenuItem resetMenu;
-    private javax.swing.JButton sendBPM;
     private javax.swing.JTextArea textSpace;
     // End of variables declaration//GEN-END:variables
 
@@ -475,6 +462,7 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
             try {
                 updateTime();
                 updateBpm();
+                startAlarms();
             } catch (InterruptedException ex) {
                 Logger.getLogger(ClientApp.class.getName()).log(Level.SEVERE, null, ex);
             }
