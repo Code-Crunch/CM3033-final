@@ -355,29 +355,6 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
         currentTimeValue.setText(dateFormat.format(time));
         // Set the elapsed variable to the current time minus the start time.
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
-        if (!a.active()) {
-            heartbeatValue = dataShare.getHb();
-            long tEnd = System.currentTimeMillis();
-            long tDelta = tEnd - tStart;
-            double elapsedSeconds = tDelta / 1000.0;
-            if (elapsedSeconds > dataShare.getHeartBeat().getHBI().getDelay()) {
-                System.out.println(dataShare.getHeartBeat().getHBI().getDelay() + " Seconds");
-                System.out.println(elapsedSeconds);
-                tStart = System.currentTimeMillis();
-                Random r = new Random();
-                int i = r.nextInt(dataShare.getHeartBeat().getHBI().getTolerance());
-                heartbeatValue += i;
-                System.out.println(heartbeatValue);
-                if (heartbeatValue > 0) {
-                    updateBpm(String.valueOf(heartbeatValue));
-                    alterText(dataShare.genTime());
-//                a.check(heartbeatValue);
-//                if (a.info() != null) {
-//                    alterText(a.info());
-//                    a.setInfo(null);
-                }
-            }
-        }
     }
 
     // The method to test dropdowns

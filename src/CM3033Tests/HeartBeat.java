@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author Florin Mazilu 1114040
  */
-public class HeartBeat {
+public class HeartBeat implements Runnable {
 
     //set a max value that the BPM can be 
     //create a input for the heartbeat
@@ -26,12 +26,14 @@ public class HeartBeat {
     //gen date time for logging when a BPM is automaticly generated
     private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private Calendar start = null;
+    long tStart = System.currentTimeMillis();
 
     //constructor
     public HeartBeat(Alarm a) {
 
         hbi = new HeartBeatInput();
         this.a = a;
+        hbi.setVisible(true);
     }
 
     //set automatic true
@@ -45,7 +47,6 @@ public class HeartBeat {
     }
 
     public int getCurrentBPM() {
-        getRandom();
         return BPM;
     }
 
@@ -78,5 +79,18 @@ public class HeartBeat {
 
     public HeartBeatInput getHBI() {
         return hbi;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+            if (elapsedSeconds > hbi.getDelay()) {
+                tStart = System.currentTimeMillis();
+                getRandom();
+            }
+        }
     }
 }
