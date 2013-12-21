@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CM3033Tests;
+package CM3033Application;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

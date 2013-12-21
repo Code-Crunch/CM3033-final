@@ -1,4 +1,4 @@
-package CM3033Tests;
+package CM3033Application;
 
 import java.awt.Component;
 import java.io.IOException;
@@ -295,10 +295,11 @@ public class ClientApp extends javax.swing.JFrame implements Runnable {
             // set the data share to atempt to connect
             dataShare.setConnect(!dataShare.isConnect());
             // Show the values that have been set in the text area.
-            alterText("Min set to: " + lowValue + "\tMax set to: " + highValue);
+            
         } else {
             // set shared data to disconncet
             dataShare.setConnect(!dataShare.isConnect());
+            alterText("Min set to: " + lowValue + "\tMax set to: " + highValue);
         }
         a.setHigh(Integer.parseInt(maxValue.getSelectedItem().toString()));
         a.setLow(Integer.parseInt(minValue.getSelectedItem().toString()));

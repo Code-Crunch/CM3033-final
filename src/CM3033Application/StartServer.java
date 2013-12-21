@@ -1,4 +1,4 @@
-package CM3033Tests;
+package CM3033Application;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  * @author Sam Cusson 1006286
+ * This code was based on CM3033 Lab 2 Exercise 3 - Main Java File
  */
 
 public class StartServer {

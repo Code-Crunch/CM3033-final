@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CM3033Tests;
+package CM3033Application;
 
 import java.io.IOException;
 
 /**
  *
- * @author samc
+ * @author Sam Cusson 1006286
  */
-public class TestClientStart {
+public class StartClient {
 
     // Create a datashare to pass data
     static volatile DataShare t1 = new DataShare();
