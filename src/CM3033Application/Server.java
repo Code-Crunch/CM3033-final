@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package CM3033Tests;
+package CM3033Application;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +9,8 @@ import java.net.Socket;
 /**
  *
  * @author Sam Cusson 1006286
+ * @author Marina Shchukina 1014481
+ * This code was based on CM3033 Lab 2 Exercise 3 - ClientRequest.java
  */
 public class Server implements Runnable {
 
@@ -20,6 +18,7 @@ public class Server implements Runnable {
     private Socket incoming;
     private int number;
     private ServerApp serverApp;
+    
 
     // Create the server using the passed incoming code
     public Server(Socket incoming, int no, ServerApp serverApp) {
@@ -48,10 +47,9 @@ public class Server implements Runnable {
             System.out.println(incoming.getLocalAddress().getHostName() + " Connected " + number);
             // A boolean to store a while variable
             boolean finished = false;
-            int bpm = 0;
+
             while (!finished) {
-                bpm++;
-                serverApp.updateBPM(number, bpm);
+                
                 serverApp.updateConnected(number);
                 
                 // if the listener is ready
@@ -71,8 +69,37 @@ public class Server implements Runnable {
                             System.out.println(incoming.getLocalAddress().getHostName() + " Disconnected");
                             // Set finised to true to exit the while
                             finished = true;
-                        }
+                        } //if BYE
+                        
+                        /* START CODE Marina Shchukina,  1014481 */
+                        
+                        //passing the BMP value to the server GUI
+                        if (str.trim().startsWith("BPM")) {
+                           
+                            System.out.println("My BPM: " + str + "\n");
+                            
+                            int bpm = Integer.parseInt(str.trim().substring(4));
+                            serverApp.updateBPM(number, bpm);
+                        } //if BPM is passed through
+                        
+                         //passing the max and min values to the server GUI
+                        if (str.trim().startsWith("MaxMin")) {
+                           
+                            String tempStr = str.trim().substring(7); 
+                            String[] split = tempStr.split(",");
+                            
+                            int max, min;
+                            
+                            min = Integer.parseInt(split[0]);
+                            max = Integer.parseInt(split[1]);
+                            
+                            serverApp.updateMaxMin(number, max, min);
+                            
+                        } //if MinMax is passed through
+                        
+                        /* END CODE Marina Shchukina, 1014481 */
                     }
+
                 }
             }
             // Disconnect the client

@@ -49,9 +49,9 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Connection3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Connection1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="Connection3" max="32767" attributes="0"/>
+                          <Component id="Connection1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -207,13 +207,13 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="alarmLog1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
+                          <Component id="minLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="minValue1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="maxLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="maxValue1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="minLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="minValue1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="bpmLabel1" min="-2" max="-2" attributes="0"/>
@@ -222,8 +222,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lastUpdateLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="lastUpdateValue1" pref="276" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lastUpdateValue1" min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -245,13 +245,11 @@
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="minValue1" min="-2" max="-2" attributes="0"/>
+                      <Component id="minLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="maxLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="maxValue1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="minLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minValue1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -286,7 +284,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Last update:"/>
+            <Property name="text" type="java.lang.String" value="Last message was received at:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="lastUpdateValue1">
@@ -297,28 +295,12 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="maxLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="15" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Max:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="minLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Min:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="maxValue1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="15" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="60"/>
+            <Property name="text" type="java.lang.String" value="Min"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minValue1">
@@ -326,7 +308,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="120"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxValue1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="alarmLog1">
@@ -344,6 +332,14 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
         </Container>
+        <Component class="javax.swing.JLabel" name="maxLabel1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Max"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="Connection2">
@@ -366,11 +362,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="maxLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="maxValue2" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="minLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="minValue2" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="bpmLabel2" min="-2" max="-2" attributes="0"/>
@@ -379,8 +375,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lastUpdateLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="lastUpdateValue2" pref="294" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lastUpdateValue2" min="-2" pref="176" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -404,11 +400,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="maxLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="maxValue2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="minLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minValue2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -443,7 +439,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Last update:"/>
+            <Property name="text" type="java.lang.String" value="Last message was received at:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="lastUpdateValue2">
@@ -459,7 +455,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Max:"/>
+            <Property name="text" type="java.lang.String" value="Min"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minLabel2">
@@ -467,15 +463,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Min:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="maxValue2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="15" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="60"/>
+            <Property name="text" type="java.lang.String" value="Max"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minValue2">
@@ -483,7 +471,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="120"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxValue2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="alarmLog2">
@@ -520,11 +514,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="maxLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="maxValue3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="minLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="minValue3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="bpmLabel3" min="-2" max="-2" attributes="0"/>
@@ -533,8 +527,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lastUpdateLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="lastUpdateValue3" pref="300" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lastUpdateValue3" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -558,11 +552,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="maxLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="maxValue3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="minLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minValue3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -597,7 +591,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Last update:"/>
+            <Property name="text" type="java.lang.String" value="Last message was received at:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="lastUpdateValue3">
@@ -616,7 +610,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Max:"/>
+            <Property name="text" type="java.lang.String" value="Min"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minLabel3">
@@ -624,15 +618,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Min:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="maxValue3">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="15" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="60"/>
+            <Property name="text" type="java.lang.String" value="Max"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minValue3">
@@ -640,7 +626,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="120"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxValue3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="alarmLog3">
@@ -677,11 +669,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="maxLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="maxValue4" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="minLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="minValue4" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue4" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="bpmLabel4" min="-2" max="-2" attributes="0"/>
@@ -690,8 +682,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lastUpdateLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Component id="lastUpdateValue4" pref="276" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lastUpdateValue4" min="-2" pref="158" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -715,11 +707,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="maxLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="maxValue4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minValue4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="minLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minValue4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maxValue4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -754,7 +746,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Last update:"/>
+            <Property name="text" type="java.lang.String" value="Last message was received at:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="lastUpdateValue4">
@@ -770,7 +762,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Max:"/>
+            <Property name="text" type="java.lang.String" value="Min"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minLabel4">
@@ -778,15 +770,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Min:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="maxValue4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="15" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="60"/>
+            <Property name="text" type="java.lang.String" value="Max"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="minValue4">
@@ -794,7 +778,13 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="120"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="maxValue4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="alarmLog4">
@@ -819,11 +809,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="140" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                  <EmptySpace pref="121" max="32767" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="92" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>

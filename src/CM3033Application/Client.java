@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CM3033Tests;
+package CM3033Application;
 
 import java.awt.Component;
 import java.io.BufferedReader;
@@ -80,7 +80,7 @@ public class Client implements Runnable {
                             }
                             // If the in stream is ready
 
-                            // Set the max min to th shared maxmin
+                            // Set the max min to the shared maxmin
                             //sendStr = "MaxMin:" + shared.getMaxMin();
                             // If the send has been updated 
                             if (!sendStr.equals("MaxMin:" + shared.getMaxMin())) {
@@ -88,7 +88,9 @@ public class Client implements Runnable {
                                 sendMessage("MaxMin:" + shared.getMaxMin());
                                 // Set the sent message record
                                 sendStr = shared.getMaxMin() + "";
+                                //recieveMessage();
                             }
+                            //recieveMessage();
 
                         } else {
                             // set shared connect and connected to false
