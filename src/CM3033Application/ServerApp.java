@@ -56,8 +56,9 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         minLabel1 = new javax.swing.JLabel();
         minValue1 = new javax.swing.JLabel();
         maxValue1 = new javax.swing.JLabel();
-        alarmLog1 = new javax.swing.JScrollPane();
         maxLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        alarmLog1 = new javax.swing.JTextArea();
         Connection2 = new javax.swing.JPanel();
         bpmLabel2 = new javax.swing.JLabel();
         bpmValue2 = new javax.swing.JLabel();
@@ -67,7 +68,8 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         minLabel2 = new javax.swing.JLabel();
         minValue2 = new javax.swing.JLabel();
         maxValue2 = new javax.swing.JLabel();
-        alarmLog2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        alarmLog2 = new javax.swing.JTextArea();
         Connection3 = new javax.swing.JPanel();
         bpmLabel3 = new javax.swing.JLabel();
         bpmValue3 = new javax.swing.JLabel();
@@ -77,7 +79,8 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         minLabel3 = new javax.swing.JLabel();
         minValue3 = new javax.swing.JLabel();
         maxValue3 = new javax.swing.JLabel();
-        alarmLog3 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        alarmLog3 = new javax.swing.JTextArea();
         Connection4 = new javax.swing.JPanel();
         bpmLabel4 = new javax.swing.JLabel();
         bpmValue4 = new javax.swing.JLabel();
@@ -87,7 +90,8 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         minLabel4 = new javax.swing.JLabel();
         minValue4 = new javax.swing.JLabel();
         maxValue4 = new javax.swing.JLabel();
-        alarmLog4 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        alarmLog4 = new javax.swing.JTextArea();
         alarmButtons = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -96,8 +100,6 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         elapsedTimeValue = new javax.swing.JLabel();
         currentTimeValue = new javax.swing.JLabel();
         elapsedTime = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        currentTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,13 +195,12 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
 
         maxValue1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        alarmLog1.setToolTipText("");
-        alarmLog1.setAutoscrolls(true);
-        alarmLog1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        alarmLog1.setName("Alarm Log"); // NOI18N
-
         maxLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         maxLabel1.setText("Max");
+
+        alarmLog1.setColumns(20);
+        alarmLog1.setRows(5);
+        jScrollPane1.setViewportView(alarmLog1);
 
         javax.swing.GroupLayout Connection1Layout = new javax.swing.GroupLayout(Connection1);
         Connection1.setLayout(Connection1Layout);
@@ -208,7 +209,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Connection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alarmLog1)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection1Layout.createSequentialGroup()
                         .addComponent(minLabel1)
                         .addGap(31, 31, 31)
@@ -241,17 +242,14 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 .addGap(22, 22, 22)
                 .addGroup(Connection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(minValue1)
-                    .addGroup(Connection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(minLabel1)
-                        .addGroup(Connection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(maxValue1)
-                            .addComponent(maxLabel1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(alarmLog1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(minLabel1)
+                    .addGroup(Connection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(maxValue1)
+                        .addComponent(maxLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
-
-        alarmLog1.getAccessibleContext().setAccessibleName("Alarm log");
 
         Connection2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         Connection2.setName("Patient 1"); // NOI18N
@@ -279,20 +277,19 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
 
         maxValue2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        alarmLog2.setToolTipText("");
-        alarmLog2.setAutoscrolls(true);
-        alarmLog2.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        alarmLog2.setName("Alarm Log"); // NOI18N
+        alarmLog2.setEditable(false);
+        alarmLog2.setColumns(20);
+        alarmLog2.setRows(5);
+        jScrollPane2.setViewportView(alarmLog2);
 
         javax.swing.GroupLayout Connection2Layout = new javax.swing.GroupLayout(Connection2);
         Connection2.setLayout(Connection2Layout);
         Connection2Layout.setHorizontalGroup(
             Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection2Layout.createSequentialGroup()
+            .addGroup(Connection2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alarmLog2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection2Layout.createSequentialGroup()
+                .addGroup(Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Connection2Layout.createSequentialGroup()
                         .addComponent(maxLabel2)
                         .addGap(28, 28, 28)
                         .addComponent(minValue2)
@@ -300,15 +297,20 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                         .addComponent(minLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(maxValue2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection2Layout.createSequentialGroup()
+                    .addGroup(Connection2Layout.createSequentialGroup()
                         .addComponent(bpmLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bpmValue2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection2Layout.createSequentialGroup()
+                    .addGroup(Connection2Layout.createSequentialGroup()
                         .addComponent(lastUpdateLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(lastUpdateValue2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Connection2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         Connection2Layout.setVerticalGroup(
             Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,9 +331,12 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                     .addGroup(Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minLabel2)
                         .addComponent(maxValue2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(alarmLog2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Connection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection2Layout.createSequentialGroup()
+                    .addContainerGap(130, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         Connection3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -365,36 +370,40 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
 
         maxValue3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        alarmLog3.setToolTipText("");
-        alarmLog3.setAutoscrolls(true);
-        alarmLog3.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        alarmLog3.setName("Alarm Log"); // NOI18N
+        alarmLog3.setEditable(false);
+        alarmLog3.setColumns(20);
+        alarmLog3.setRows(5);
+        jScrollPane3.setViewportView(alarmLog3);
 
         javax.swing.GroupLayout Connection3Layout = new javax.swing.GroupLayout(Connection3);
         Connection3.setLayout(Connection3Layout);
         Connection3Layout.setHorizontalGroup(
             Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection3Layout.createSequentialGroup()
+            .addGroup(Connection3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alarmLog3)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection3Layout.createSequentialGroup()
-                        .addComponent(maxLabel3)
-                        .addGap(28, 28, 28)
-                        .addComponent(minValue3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(minLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(maxValue3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection3Layout.createSequentialGroup()
-                        .addComponent(bpmLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bpmValue3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection3Layout.createSequentialGroup()
-                        .addComponent(lastUpdateLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastUpdateValue3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Connection3Layout.createSequentialGroup()
+                        .addGroup(Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Connection3Layout.createSequentialGroup()
+                                .addComponent(maxLabel3)
+                                .addGap(28, 28, 28)
+                                .addComponent(minValue3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(minLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(maxValue3))
+                            .addGroup(Connection3Layout.createSequentialGroup()
+                                .addComponent(bpmLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bpmValue3))
+                            .addGroup(Connection3Layout.createSequentialGroup()
+                                .addComponent(lastUpdateLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                                .addComponent(lastUpdateValue3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addGap(20, 20, 20))))
         );
         Connection3Layout.setVerticalGroup(
             Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +424,9 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                     .addGroup(Connection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minLabel3)
                         .addComponent(maxValue3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(alarmLog3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         Connection4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -446,10 +455,10 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
 
         maxValue4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
 
-        alarmLog4.setToolTipText("");
-        alarmLog4.setAutoscrolls(true);
-        alarmLog4.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        alarmLog4.setName("Alarm Log"); // NOI18N
+        alarmLog4.setEditable(false);
+        alarmLog4.setColumns(20);
+        alarmLog4.setRows(5);
+        jScrollPane4.setViewportView(alarmLog4);
 
         javax.swing.GroupLayout Connection4Layout = new javax.swing.GroupLayout(Connection4);
         Connection4.setLayout(Connection4Layout);
@@ -458,7 +467,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Connection4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Connection4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alarmLog4)
+                    .addComponent(jScrollPane4)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Connection4Layout.createSequentialGroup()
                         .addComponent(maxLabel4)
                         .addGap(28, 28, 28)
@@ -496,8 +505,8 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                     .addGroup(Connection4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(minLabel4)
                         .addComponent(maxValue4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(alarmLog4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -552,9 +561,6 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
 
         elapsedTime.setText("Elapsed Time:");
 
-        currentTime.setText("Current Time:");
-        jScrollPane1.setViewportView(currentTime);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -563,31 +569,30 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(elapsedTime)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(elapsedTimeValue))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(currentTimeValue)))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(alarmButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Connection3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Connection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Connection2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Connection4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(19, 19, 19))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(elapsedTime)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                                        .addComponent(elapsedTimeValue))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(currentTimeValue))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Connection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Connection3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Connection4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Connection2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,22 +600,20 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(currentTimeValue))
+                        .addGap(14, 14, 14)
+                        .addComponent(currentTimeValue)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(elapsedTime)
                             .addComponent(elapsedTimeValue))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Connection1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Connection2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Connection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Connection2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Connection4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Connection3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Connection3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Connection4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(alarmButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -654,10 +657,10 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel Connection3;
     private javax.swing.JPanel Connection4;
     private javax.swing.JPanel alarmButtons;
-    private javax.swing.JScrollPane alarmLog1;
-    private javax.swing.JScrollPane alarmLog2;
-    private javax.swing.JScrollPane alarmLog3;
-    private javax.swing.JScrollPane alarmLog4;
+    private javax.swing.JTextArea alarmLog1;
+    private javax.swing.JTextArea alarmLog2;
+    private javax.swing.JTextArea alarmLog3;
+    private javax.swing.JTextArea alarmLog4;
     private javax.swing.JLabel bpmLabel1;
     private javax.swing.JLabel bpmLabel2;
     private javax.swing.JLabel bpmLabel3;
@@ -666,7 +669,6 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel bpmValue2;
     private javax.swing.JLabel bpmValue3;
     private javax.swing.JLabel bpmValue4;
-    private javax.swing.JLabel currentTime;
     private javax.swing.JLabel currentTimeValue;
     private javax.swing.JLabel elapsedTime;
     private javax.swing.JLabel elapsedTimeValue;
@@ -680,6 +682,9 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lastUpdateLabel1;
     private javax.swing.JLabel lastUpdateLabel2;
@@ -727,7 +732,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
      */
     public String constructAMessage(javax.swing.JLabel bpmValueElement, javax.swing.JLabel minValueElement, javax.swing.JLabel maxValueElement, 
                                     javax.swing.JScrollPane alarmValueElement) {
-        String str;
+        String str="";
         int bpm = Integer.parseInt(bpmValueElement.getText());
         int min = Integer.parseInt(minValueElement.getText());
         int max = Integer.parseInt(maxValueElement.getText());
@@ -736,7 +741,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         if( bpm > max || bpm < min) {
             str = "ALARM";
         }
-        return "";
+        return str;
     }
     
     /**
@@ -753,7 +758,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         elapsedTimeValue.setText(dateFormat.format((time.getTime() - start.getTimeInMillis() - 3600000)));
     }
     /**
-     * Pass the BPM into frame GUI
+     * Check an appropriate check box for a connected client
      */
     public void updateConnected(int frameNo) {
         switch (frameNo) {
@@ -820,6 +825,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
             case 1:
                 bpmValue1.setText("" + bpm);
                 lastUpdateValue1.setText(captureTime());
+                alarmLog1.append("purr");
                 break;
             case 2:
                 bpmValue2.setText("" + bpm);
