@@ -97,9 +97,10 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        elapsedTimeValue = new javax.swing.JLabel();
         currentTimeValue = new javax.swing.JLabel();
+        elapsedTimeValue = new javax.swing.JLabel();
         elapsedTime = new javax.swing.JLabel();
+        currentTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,21 +143,20 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         topPanelLayout.setHorizontalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(topPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox1)
-                        .addGap(29, 29, 29)
-                        .addComponent(jCheckBox2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox3)
-                        .addGap(39, 39, 39)
-                        .addComponent(jCheckBox4)
-                        .addGap(198, 198, 198))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addGap(29, 29, 29)
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBox3)
+                .addGap(39, 39, 39)
+                .addComponent(jCheckBox4)
+                .addGap(235, 235, 235))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +168,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                     .addComponent(jCheckBox2)
                     .addComponent(jCheckBox3)
                     .addComponent(jCheckBox4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -555,11 +555,13 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        elapsedTimeValue.setText("00:00:00");
-
         currentTimeValue.setText("00:00:00");
 
+        elapsedTimeValue.setText("00:00:00");
+
         elapsedTime.setText("Elapsed Time:");
+
+        currentTime.setText("CurrentTime");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -573,17 +575,18 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(currentTime)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(currentTimeValue))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(elapsedTime)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-                                        .addComponent(elapsedTimeValue))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(currentTimeValue))))
+                                        .addGap(41, 41, 41)
+                                        .addComponent(elapsedTimeValue))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Connection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -600,12 +603,14 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(currentTimeValue)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(elapsedTime)
-                            .addComponent(elapsedTimeValue))))
+                            .addComponent(currentTimeValue)
+                            .addComponent(currentTime))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(elapsedTimeValue)
+                            .addComponent(elapsedTime))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Connection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -669,6 +674,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel bpmValue2;
     private javax.swing.JLabel bpmValue3;
     private javax.swing.JLabel bpmValue4;
+    private javax.swing.JLabel currentTime;
     private javax.swing.JLabel currentTimeValue;
     private javax.swing.JLabel elapsedTime;
     private javax.swing.JLabel elapsedTimeValue;
@@ -739,7 +745,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
         
         
         if( bpm > max || bpm < min) {
-            str = "ALARM";
+            str = captureTime() + " ALARM TRIGGERED!";
         }
         return str;
     }
@@ -790,6 +796,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 minValue1.setText("");
                 maxValue1.setText("");
                 lastUpdateValue1.setText("");
+                alarmLog1.setText("");
                 break;
             case 2:               
                 jCheckBox2.setSelected(false);
@@ -797,6 +804,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 minValue2.setText("");
                 maxValue2.setText("");
                 lastUpdateValue2.setText("");
+                alarmLog2.setText("");
                 break;
             case 3:                
                 jCheckBox3.setSelected(false);
@@ -804,6 +812,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 minValue3.setText("");
                 maxValue3.setText("");
                 lastUpdateValue3.setText("");
+                alarmLog3.setText("");
                 break;
             case 4:
                 jCheckBox4.setSelected(false);
@@ -811,6 +820,7 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
                 minValue4.setText("");
                 maxValue4.setText("");
                 lastUpdateValue4.setText("");
+                alarmLog4.setText("");
                 break;
             default:
                 break;
@@ -823,21 +833,34 @@ public class ServerApp extends javax.swing.JFrame implements Runnable {
     public void updateBPM(int frameNo, int bpm) {
         switch (frameNo) {
             case 1:
+                //String message = constructAMessage(bpmValue1, minValue1, maxValue1, jScrollPane1);
                 bpmValue1.setText("" + bpm);
                 lastUpdateValue1.setText(captureTime());
-                alarmLog1.append("purr");
+                
+                if (!constructAMessage(bpmValue1, minValue1, maxValue1, jScrollPane1).equals("")) { 
+                    alarmLog1.append( constructAMessage(bpmValue1, minValue1, maxValue1, jScrollPane1) + "\n"); 
+                }
                 break;
             case 2:
                 bpmValue2.setText("" + bpm);
                 lastUpdateValue2.setText(captureTime());
+                    if (!constructAMessage(bpmValue2, minValue2, maxValue2, jScrollPane2).equals("")) { 
+                    alarmLog2.append( constructAMessage(bpmValue2, minValue2, maxValue2, jScrollPane2) + "\n"); 
+                }
                 break;
             case 3:
                 bpmValue3.setText("" + bpm);
                 lastUpdateValue3.setText(captureTime());
+                if (!constructAMessage(bpmValue3, minValue3, maxValue3, jScrollPane3).equals("")) { 
+                    alarmLog3.append( constructAMessage(bpmValue3, minValue3, maxValue3, jScrollPane3) + "\n"); 
+                }
                 break;
             case 4:
                 bpmValue4.setText("" + bpm);
                 lastUpdateValue4.setText(captureTime());
+                if (!constructAMessage(bpmValue4, minValue4, maxValue4, jScrollPane4).equals("")) { 
+                    alarmLog4.append( constructAMessage(bpmValue4, minValue4, maxValue4, jScrollPane4) + "\n"); 
+                }
                 break;
             default:
                 break;
